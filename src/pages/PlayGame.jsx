@@ -5,7 +5,7 @@ const PlayGame = () => {
   return (
     <div>
         <button className='btn btn-blue'>
-        Share with a friend!
+        Challenge a friend!
             <FaShare/>
         </button>
         <Game/>

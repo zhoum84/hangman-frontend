@@ -10,7 +10,7 @@ const Header = () => {
     navigate("/");
   };
   return (
-    
+
     <header className="header">
       <div className="title">Hangman!</div>
       <ul>

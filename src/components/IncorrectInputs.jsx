@@ -1,7 +1,19 @@
-const IncorrectInputs = () => {
+const IncorrectInputs = ({ incorrectInputs }) => {
   return (
-    <div>IncorrectInputs</div>
-  )
-}
+    <>
+      <div className="incorrect-inputs-container">
+        <div>
+          {incorrectInputs.length > 0 && <p>Wrong</p>}
+          {incorrectInputs
+            .map((letter, i) => <span key={i}>{letter}</span>)
+            .reduce(
+              (prev, curr) => (prev === null ? [curr] : [prev, ", ", curr]),
+              null
+            )}
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default IncorrectInputs
+export default IncorrectInputs;

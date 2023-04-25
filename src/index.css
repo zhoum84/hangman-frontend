@@ -149,7 +149,7 @@ ul{
 
 .wrapper {
   width: 430px;
-  height: 500px;
+  height: 430px;
   display: block;
   position: relative;
 }
@@ -279,6 +279,8 @@ ul{
   display: none;
   align-items: center;
   justify-content: center;
+  color: white;
+  font-size: 30px;
 }
 
 .popup button {
@@ -324,7 +326,7 @@ ul{
 .game{
   max-width: 400px;
   display: inline-block;
-  margin:50px;
+  margin:45px;
 }
 
 .vertical-line {
@@ -334,4 +336,21 @@ ul{
   left: 50%;
   margin-left: -3px;
   top: 10%;
+}
+
+.incorrect-inputs-container {
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: red;
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px;
+}
+
+.wrong-letters-container span {
+  font-size: 24px;
 }

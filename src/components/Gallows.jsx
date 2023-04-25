@@ -1,20 +1,20 @@
-// This is the hangman design. Changes based on incorrect letters
-const Gallows = () => {
+// Hangman design. Changes based on incorrect letters
+const Gallows = ({ incorrectInputs }) => {
+  const count = incorrectInputs.length;
   return (
     <div className="wrapper">
-     
-    <div className='bottom'></div>
-    <div className='top'></div>
-    <div className='support'></div>
-    <div className="noose"></div>
-    <div className="head"></div>
-    <div className="torso"></div>
-    <div className="leftarm"></div>
-    <div className="rightarm"></div>
-    <div className="leftleg"></div>
-    <div className="rightleg"></div>
-</div>
+      <div className="bottom"></div>
+      <div className="top"></div>
+      <div className="support"></div>
+      <div className="noose"></div>
 
+      {count > 0 && <div className="head"></div>}
+      {count > 1 && <div className="torso"></div>}
+      {count > 2 && <div className="leftarm"></div>}
+      {count > 3 && <div className="rightarm"></div>}
+      {count > 4 && <div className="leftleg"></div>}
+      {count > 5 && <div className="rightleg"></div>}
+    </div>
   );
 };
 
