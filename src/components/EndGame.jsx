@@ -38,7 +38,7 @@ const EndGame = ({
     finalMessage = "You win!";
     playable = false;
   } else if (state === false) {
-    finalMessage = "You lose!";
+    finalMessage = "You lose! The correct word was " + selectedWord;
     playable = false;
   }
 
