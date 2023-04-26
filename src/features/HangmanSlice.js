@@ -323,8 +323,3 @@ export const hangmanSlice = createSlice({
           state.isLoading = true;
         },
     }})
-
-
-
-
-
