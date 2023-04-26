@@ -94,36 +94,36 @@ const Game = () => {
       </div>
       <div>
         <div className='row'>
-          <button className="keyboard" onClick={() => handleButtonClick("Q")}>Q</button>
-          <button className="keyboard" onClick={() => handleButtonClick("W")}>W</button>
-          <button className="keyboard" onClick={() => handleButtonClick("E")}>E</button>
-          <button className="keyboard" onClick={() => handleButtonClick("R")}>R</button>
-          <button className="keyboard" onClick={() => handleButtonClick("T")}>T</button>
-          <button className="keyboard" onClick={() => handleButtonClick("Y")}>Y</button>
-          <button className="keyboard" onClick={() => handleButtonClick("U")}>U</button>
-          <button className="keyboard" onClick={() => handleButtonClick("I")}>I</button>
-          <button className="keyboard" onClick={() => handleButtonClick("O")}>O</button>
-          <button className="keyboard" onClick={() => handleButtonClick("P")}>P</button>
+          <button className="keyboard" onClick={() => handleButtonClick("q")}>Q</button>
+          <button className="keyboard" onClick={() => handleButtonClick("w")}>W</button>
+          <button className="keyboard" onClick={() => handleButtonClick("e")}>E</button>
+          <button className="keyboard" onClick={() => handleButtonClick("r")}>R</button>
+          <button className="keyboard" onClick={() => handleButtonClick("t")}>T</button>
+          <button className="keyboard" onClick={() => handleButtonClick("y")}>Y</button>
+          <button className="keyboard" onClick={() => handleButtonClick("u")}>U</button>
+          <button className="keyboard" onClick={() => handleButtonClick("i")}>I</button>
+          <button className="keyboard" onClick={() => handleButtonClick("o")}>O</button>
+          <button className="keyboard" onClick={() => handleButtonClick("p")}>P</button>
         </div>
         <div className='row'>
-          <button className="keyboard" onClick={() => handleButtonClick("A")}>A</button>
-          <button className="keyboard" onClick={() => handleButtonClick("S")}>S</button>
-          <button className="keyboard" onClick={() => handleButtonClick("D")}>D</button>
-          <button className="keyboard" onClick={() => handleButtonClick("F")}>F</button>
-          <button className="keyboard" onClick={() => handleButtonClick("G")}>G</button>
-          <button className="keyboard" onClick={() => handleButtonClick("H")}>H</button>
-          <button className="keyboard" onClick={() => handleButtonClick("J")}>J</button>
-          <button className="keyboard" onClick={() => handleButtonClick("K")}>K</button>
-          <button className="keyboard" onClick={() => handleButtonClick("L")}>L</button>
+          <button className="keyboard" onClick={() => handleButtonClick("a")}>A</button>
+          <button className="keyboard" onClick={() => handleButtonClick("s")}>S</button>
+          <button className="keyboard" onClick={() => handleButtonClick("d")}>D</button>
+          <button className="keyboard" onClick={() => handleButtonClick("f")}>F</button>
+          <button className="keyboard" onClick={() => handleButtonClick("g")}>G</button>
+          <button className="keyboard" onClick={() => handleButtonClick("h")}>H</button>
+          <button className="keyboard" onClick={() => handleButtonClick("j")}>J</button>
+          <button className="keyboard" onClick={() => handleButtonClick("k")}>K</button>
+          <button className="keyboard" onClick={() => handleButtonClick("l")}>L</button>
         </div>
         <div className='row'>
-          <button className="keyboard" onClick={() => handleButtonClick("Z")}>Z</button>
-          <button className="keyboard" onClick={() => handleButtonClick("X")}>X</button>
-          <button className="keyboard" onClick={() => handleButtonClick("C")}>C</button>
-          <button className="keyboard" onClick={() => handleButtonClick("V")}>V</button>
-          <button className="keyboard" onClick={() => handleButtonClick("B")}>B</button>
-          <button className="keyboard" onClick={() => handleButtonClick("N")}>N</button>
-          <button className="keyboard" onClick={() => handleButtonClick("M")}>M</button>
+          <button className="keyboard" onClick={() => handleButtonClick("z")}>Z</button>
+          <button className="keyboard" onClick={() => handleButtonClick("x")}>X</button>
+          <button className="keyboard" onClick={() => handleButtonClick("c")}>C</button>
+          <button className="keyboard" onClick={() => handleButtonClick("v")}>V</button>
+          <button className="keyboard" onClick={() => handleButtonClick("b")}>B</button>
+          <button className="keyboard" onClick={() => handleButtonClick("n")}>N</button>
+          <button className="keyboard" onClick={() => handleButtonClick("m")}>M</button>
         </div>
       </div>
     </>
