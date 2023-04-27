@@ -4,7 +4,7 @@ import { FaSignInAlt } from "react-icons/fa";
 
 
 // The login page. Just like last time.
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
 
@@ -13,8 +13,11 @@ const Login = () => {
     setInput(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // may want to authenticate before setting username
+    props.username(e.target[0].value);
 
     // dispatch(login(input))
     //   .unwrap()
@@ -35,7 +38,7 @@ const Login = () => {
       </section>
 
       <section className='form'>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className='form-group'>
             <input
               type='text'

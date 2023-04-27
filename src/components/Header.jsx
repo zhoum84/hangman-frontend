@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useState } from "react";
 
-const Header = () => {
+const Header = (props) => {
+  // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   const navigate = useNavigate();
-  const onPress = () => {
+  const handleLogout = () => {
     // dispatch(logout());
     // setUser('')
     // setIsUserLoggedIn(false)
@@ -13,9 +15,10 @@ const Header = () => {
 
     <header className="header">
       <div className="title">Hangman!</div>
+      <p>{props.username}</p>
       <ul>
         <li>
-          <button className="btn" onClick={onPress}>
+          <button className="btn" onClick={handleLogout}>
             <FaSignOutAlt /> Logout
           </button>
         </li>
