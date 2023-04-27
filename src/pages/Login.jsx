@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { FaSignInAlt } from 'react-icons/fa'
-import { login } from '../features/auth/authSlice'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaSignInAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 
-function Login(props) {
-  const [input, setInput] = useState('')
- 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
+// The login page. Just like last time.
+const Login = (props) => {
+  const navigate = useNavigate();
+  const [input, setInput] = useState("");
 
   const handleChange = (e) => {
-    props.sendRequest(e.target.value)
-    setInput(e.target.value)
-  }
+    //props.sendRequest(e.target.value)
+    setInput(e.target.value);
+  };
 
-  //get user data
-  const onSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    dispatch(login(input))
-      .unwrap()
-      .then((user) => {
-        console.log(user);
-        console.log('login successful ' + user.name)
-        navigate('/home')
-      })
-      .catch( err => {console.log(err)})
-  }
+    // may want to authenticate before setting username
+    const user = e.target[0].value;
+    props.username(user);
+
+    toast(`Logged in as ${user}`, {
+      type: "success",
+      autoClose: 1500,
+      position: "top-center"
+    });
+
+    // dispatch(login(input))
+    //   .unwrap()
+    //   .then((user) => {
+    //     navigate('/home')
+    //   })
+    //   .catch( err => {console.log(err)})
+    navigate("/home");
+  };
 
   return (
     <>
@@ -37,7 +42,7 @@ function Login(props) {
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>Please enter your name to continue</p>
+        <p>Enter a username to continue</p>
       </section>
 
       <section className='form'>
@@ -58,7 +63,7 @@ function Login(props) {
         </form>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
