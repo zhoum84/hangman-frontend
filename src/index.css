@@ -375,6 +375,17 @@ ul {
   width: 40px;
 }
 
+.selectedLetter {
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #7e7e81;
+  border: none;
+  border-radius: 5px;
+  width: 40px;
+}
+
 a {
   text-decoration: none;
   color: #000;
