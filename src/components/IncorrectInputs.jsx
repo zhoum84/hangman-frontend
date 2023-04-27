@@ -3,7 +3,7 @@ const IncorrectInputs = ({ incorrectInputs }) => {
     <>
       <div className="incorrect-inputs-container">
         <div>
-          {incorrectInputs.length > 0 && <p>Wrong</p>}
+          {incorrectInputs.length > 0 && <p>{ incorrectInputs.length} Wrong Guesses:</p>}
           {incorrectInputs
             .map((letter, i) => <span key={i}>{letter}</span>)
             .reduce(
