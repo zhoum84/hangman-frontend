@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const url = process.env.REACT_APP_API_URL;
+
 
 const headers = {
   "Content-Type" : "application/json",
@@ -12,7 +13,7 @@ export const createUser = createAsyncThunk(
   'users/createUser',
   async (userData) => {
     try {
-      return await axios.post(apiUrl + 'user_create/', userData);
+      return await axios.post(url + 'user_create/', userData);
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +24,7 @@ export const checkUser = createAsyncThunk(
   'users/checkUser',
   async (name) => {
     try {
-      const response = await axios.get(apiUrl + `users/${name}`);
+      const response = await axios.get(url + `users/${name}`);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -35,7 +36,7 @@ export const addScore = createAsyncThunk(
   'scores/addScore',
   async (scoreData) => {
     try {
-      return await axios.post(apiUrl + 'add-score/', scoreData);
+      return await axios.post(url + 'add-score/', scoreData);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +47,7 @@ export const getTopScores = createAsyncThunk(
   'scores/getTopScores',
   async () => {
     try {
-      const response = await axios.get(apiUrl + 'top-score/');
+      const response = await axios.get(url + 'top-score/');
       return response.data;
     } catch (error) {
       console.log(error);
@@ -58,7 +59,7 @@ export const getScoreByGameId = createAsyncThunk(
   'scores/getScoreByGameId',
   async (gameId) => {
     try {
-      const response = await axios.get(apiUrl + 'top-score-game/', {
+      const response = await axios.get(url + 'top-score-game/', {
         params: { game_id: gameId },
       });
       return response.data;
@@ -72,7 +73,7 @@ export const createComputer = createAsyncThunk(
   'computers/createComputer',
   async (computerData) => {
     try {
-      return await axios.post(apiUrl + 'computer_create/', computerData);
+      return await axios.post(url + 'computer_create/', computerData);
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +84,7 @@ export const getComputers = createAsyncThunk(
   'computers/getComputers',
   async () => {
     try {
-      const response = await axios.get(apiUrl + 'computer/');
+      const response = await axios.get(url + 'computer/');
       return response.data;
     } catch (error) {
       console.log(error);
@@ -95,7 +96,7 @@ export const updateComputer = createAsyncThunk(
   'computers/updateComputer',
   async (computerData) => {
     try {
-      return await axios.put(apiUrl + `computer_update/${computerData.id}/`, computerData, { headers });
+      return await axios.put(url + `computer_update/${computerData.id}/`, computerData, { headers });
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +107,7 @@ export const deleteComputer = createAsyncThunk(
   'computers/deleteComputer',
   async (computerId) => {
     try {
-      return await axios.delete(apiUrl + `computer_delete/${computerId}/`);
+      return await axios.delete(url + `computer_delete/${computerId}/`);
     } catch (error) {
       console.log(error);
     }
@@ -323,3 +324,7 @@ export const hangmanSlice = createSlice({
           state.isLoading = true;
         },
     }})
+
+export const { addHangman, toggleHangman, deleteHangman } = hangmanSlice.actions;
+
+export default hangmanSlice.reducer;
