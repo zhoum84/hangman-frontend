@@ -1,30 +1,61 @@
-import { useNavigate } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
-import { useState } from "react";
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../features/auth/authSlice.js'
+import { useEffect, useState } from 'react';
+import { toast } from "react-toastify";
 
-const Header = (props) => {
-  // const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+function Header() {
   const navigate = useNavigate();
-  const handleLogout = () => {
-    // dispatch(logout());
-    // setUser('')
-    // setIsUserLoggedIn(false)
-    navigate("/");
-  };
-  return (
+  const dispatch = useDispatch();
+  const username = JSON.parse(localStorage.getItem("user"));
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
 
-    <header className="header">
-      <div className="title">Hangman!</div>
-      <p>{props.username}</p>
+  const [user, setUser] = useState();
+
+  useEffect(()=>{
+    if(username !== null){
+    setUser(username.length? username[0].name : username.name);
+    setIsUserLoggedIn(true)
+  }},[setUser,username])
+  
+
+  const onPress = () =>{
+    dispatch(logout());
+    setUser('')
+    setIsUserLoggedIn(false)
+    navigate('/');
+    toast(`Logged out ${user}`, {
+      type: "warning",
+      autoClose: 1500,
+      position: "top-center"
+    });
+  }
+  return (
+    <header className='header'>
+      {console.log('user:',user)}
+      <div className='logo'>
+        <Link to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
+      </div>
+      <div>
+        {user}
+      </div>
       <ul>
-        <li>
-          <button className="btn" onClick={handleLogout}>
-            <FaSignOutAlt /> Logout
-          </button>
-        </li>
+          {!isUserLoggedIn ?
+          <li>
+            <Link to='/'>
+              <FaSignInAlt /> Login
+            </Link>
+          </li>
+          : <li>
+              <button className='btn' onClick={onPress}> 
+                <FaSignOutAlt /> Logout
+              </button>
+            </li>
+           }
       </ul>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -8,19 +8,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 
 function App() {
-  const [username, setUsername] = useState('');
-  const getUsername = (e) => {
-    setUsername(e);
-  }
+  const [user, setUser] = useState('');
+  const sendRequest = (str) => { setUser(str); }
   //game needs to generate a link instead of going to /game
+
   return (
     <>
       <Router>
         <div className='container'>
-          <Header username={username} />
+          <Header user={user} />
           <Routes>
-            <Route path='/' element={<Login username={(e) => getUsername(e)} />} />
-            <Route path='/home' element={<Home />} />
+            <Route path='/' element={<Login user={user} sendRequest={sendRequest} />} />
+            <Route path='/home' element={<Home user={user}/>} />
             <Route path='/playgame' element={<PlayGame />} />
           </Routes>
           <ToastContainer />
