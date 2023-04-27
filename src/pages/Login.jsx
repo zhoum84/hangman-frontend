@@ -11,6 +11,7 @@ function Login(props) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+
   const handleChange = (e) => {
     props.sendRequest(e.target.value)
     setInput(e.target.value)
@@ -30,8 +31,6 @@ function Login(props) {
       .catch( err => {console.log(err)})
   }
 
-
-
   return (
     <>
       <section className='heading'>
@@ -42,7 +41,7 @@ function Login(props) {
       </section>
 
       <section className='form'>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className='form-group'>
             <input
               type='text'

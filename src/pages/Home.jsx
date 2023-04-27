@@ -6,14 +6,14 @@ const Home = () => {
 
   const [score, useScore] = useState(0);
   const navigate = useNavigate();
-  
+
   // this should generate a random game
-  const handleClick = () =>{
+  const handleClick = () => {
     navigate('/playgame');
   }
 
   // open a modal?
-  const openLeaderboard = () =>{
+  const openLeaderboard = () => {
 
   }
 

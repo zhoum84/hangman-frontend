@@ -6,10 +6,12 @@ import PlayGame from "./pages/PlayGame";
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
 function App() {
   const [user, setUser] = useState('');
   const sendRequest = (str) => { setUser(str); }
+
   //game needs to generate a link instead of going to /game
   return (
     <>
@@ -20,6 +22,7 @@ function App() {
           <Route path='/' element={<Login sendRequest={sendRequest} />} />
           <Route path='/home' element={<Home user={user} />} />
             <Route path='/playgame' element={<PlayGame user={user}/>} />
+
           </Routes>
           <ToastContainer />
         </div>
