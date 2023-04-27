@@ -1,40 +1,40 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaSignInAlt } from "react-icons/fa";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { FaSignInAlt } from 'react-icons/fa'
+import { login } from '../features/auth/authSlice'
 import { toast } from "react-toastify";
 
 
-// The login page. Just like last time.
-const Login = (props) => {
-  const navigate = useNavigate();
-  const [input, setInput] = useState("");
+function Login(props) {
+  const [input, setInput] = useState('')
+ 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    //props.sendRequest(e.target.value)
-    setInput(e.target.value);
-  };
+    props.sendRequest(e.target.value)
+    setInput(e.target.value)
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  //get user data
+  const onSubmit = async (e) => {
+    e.preventDefault()
 
-    // may want to authenticate before setting username
-    const user = e.target[0].value;
-    props.username(user);
+    dispatch(login(input))
+      .unwrap()
+      .then((user) => {
+        navigate('/home')
+      })
+      .then(    toast(`Logged in as ${props.user}`, {
+        type: "success",
+        autoClose: 1500,
+        position: "top-center"
+      }))
+      .catch( err => {console.log(err)})
+  }
 
-    toast(`Logged in as ${user}`, {
-      type: "success",
-      autoClose: 1500,
-      position: "top-center"
-    });
 
-    // dispatch(login(input))
-    //   .unwrap()
-    //   .then((user) => {
-    //     navigate('/home')
-    //   })
-    //   .catch( err => {console.log(err)})
-    navigate("/home");
-  };
 
   return (
     <>
@@ -42,11 +42,11 @@ const Login = (props) => {
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>Enter a username to continue</p>
+        <p>Please enter your name to continue</p>
       </section>
 
       <section className='form'>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
               type='text'
@@ -63,7 +63,7 @@ const Login = (props) => {
         </form>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
