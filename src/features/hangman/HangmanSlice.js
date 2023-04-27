@@ -306,6 +306,35 @@ export const hangmanSlice = createSlice({
           state.error = action.error.message;
           state.isLoading = false;
         },
+        [updateComputer.pending]: (state) => {
+          state.status = 'loading';
+        },
+        [updateComputer.fulfilled]: (state, action) => {
+          state.status = 'succeeded';
+          state.players = state.players.map(player => player.uuid === action.payload.uuid ? action.payload : player)
+        },
+        [updateComputer.rejected]: (state, action) => {
+          state.status = 'failed';
+          state.error = action.payload;
+        },
+        [deleteComputer.pending]: (state) => {
+          state.status = 'loading';
+        },
+        [randomComputer.pending]: (state) => {
+          state.status = 'loading';
+          state.isLoading = true;
+        },
+        [randomComputer.fulfilled]: (state, action) => {
+          state.status = 'succeeded';
+          state.scoresByGameId = action.payload;
+          state.isLoading = false;
+        },
+        [randomComputer.rejected]: (state, action) => {
+          state.status = 'failed';
+          state.error = action.error.message;
+          state.isLoading = false;
+        },
+
     }})
 
 export const { addHangman, toggleHangman, deleteHangman } = hangmanSlice.actions;

@@ -1,24 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Gallows from './Gallows'
 import IncorrectInputs from './IncorrectInputs'
 import Word from './Word'
 import EndGame from './EndGame'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { randomComputer } from '../features/hangman/HangmanSlice'
+
 
 
 // currently hardcoded.
 // right now it is global, or else a random word would be selected on each input
 const words = ['word', 'javascript', 'lighthall', 'ihatereactredux', 'hello'];
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+// let selectedWord = words[Math.floor(Math.random() * words.length)];
+
+
 
 
 const Game = () => {
-
+  const[selectedWord,setSelectedWord] =useState('')
   const [playable, setPlayable] = useState(true);
   const [correctInputs, setCorrectInputs] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
+  const dispatch = useDispatch()
 
+  const getWord = useCallback(() => {
+    dispatch(randomComputer())
+      .unwrap()
+      .then(data => setSelectedWord(data.word))
+  }, [dispatch])
+  
+  useEffect(() => {
+    getWord();
+  }, [getWord]);
+  
+  useEffect(() => {
+    console.log('word:', selectedWord);
+  }, [selectedWord]);
   // maybe just reload the page
   const playAgain = () => {
     setPlayable(true);
@@ -28,8 +47,7 @@ const Game = () => {
     setWrongLetters([]);
 
     // select new word
-    const random = Math.floor(Math.random() * words.length);
-    selectedWord = words[random];
+ 
   }
 
   const repeatLetter = () => {
