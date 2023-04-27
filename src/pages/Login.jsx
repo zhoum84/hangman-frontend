@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 
 // The login page. Just like last time.
@@ -17,7 +18,14 @@ const Login = (props) => {
     e.preventDefault();
 
     // may want to authenticate before setting username
-    props.username(e.target[0].value);
+    const user = e.target[0].value;
+    props.username(user);
+
+    toast(`Logged in as ${user}`, {
+      type: "success",
+      autoClose: 1500,
+      position: "top-center"
+    });
 
     // dispatch(login(input))
     //   .unwrap()
