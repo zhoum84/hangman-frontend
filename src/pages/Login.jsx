@@ -1,29 +1,36 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaSignInAlt } from "react-icons/fa";
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { FaSignInAlt } from 'react-icons/fa'
+import { login } from '../features/auth/authSlice'
 
 
-// The login page. Just like last time.
-const Login = () => {
-  const navigate = useNavigate();
-  const [input, setInput] = useState("");
+function Login(props) {
+  const [input, setInput] = useState('')
+ 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    //props.sendRequest(e.target.value)
-    setInput(e.target.value);
-  };
+    props.sendRequest(e.target.value)
+    setInput(e.target.value)
+  }
 
+  //get user data
   const onSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    // dispatch(login(input))
-    //   .unwrap()
-    //   .then((user) => {
-    //     navigate('/home')
-    //   })
-    //   .catch( err => {console.log(err)})
-    navigate("/home");
-  };
+    dispatch(login(input))
+      .unwrap()
+      .then((user) => {
+        console.log(user);
+        console.log('login successful ' + user.name)
+        navigate('/home')
+      })
+      .catch( err => {console.log(err)})
+  }
+
+
 
   return (
     <>
@@ -31,7 +38,7 @@ const Login = () => {
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>Enter a username to continue</p>
+        <p>Please enter your name to continue</p>
       </section>
 
       <section className='form'>
@@ -52,7 +59,7 @@ const Login = () => {
         </form>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
