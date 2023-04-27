@@ -33,7 +33,6 @@ function Header() {
   }
   return (
     <header className='header'>
-      {console.log('user:',user)}
       <div className='logo'>
         <Link to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
       </div>
