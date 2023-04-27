@@ -25,7 +25,6 @@ const Game = () => {
   const dispatch = useDispatch()
   // const [guessedLetters, setGuessedLetters] = useState([JSON.parse(localStorage.getItem('guessedLetters'))]);
   const [guessedLetters, setGuessedLetters] = useState(new Set([]));
-  console.log("initial guessed letters:", guessedLetters);
 
   const getWord = useCallback(() => {
     dispatch(randomComputer())
@@ -76,7 +75,6 @@ const Game = () => {
   const handleGuess = letter => {
     const newSet = new Set([...guessedLetters, letter]);
     setGuessedLetters(newSet);
-    console.log("guessed letters should change:", guessedLetters);
     if (selectedWord.includes(letter)) {
       if (!correctInputs.includes(letter)) {
         setCorrectInputs(currentInputs => [...currentInputs, letter]);
