@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from 'react-modal';
+import { useSelector } from "react-redux";
 
 const Home = () => {
 
   const [score, useScore] = useState(0);
+  const testingScore = useSelector(state => {
+    console.log(state.counter);
+    return state.hangman.score
+  });
   const navigate = useNavigate();
 
   // this should generate a random game
@@ -25,6 +30,7 @@ const Home = () => {
       </section>
 
       <h2>Your total score: {score}</h2>
+      <h2>Testing total score: {testingScore}</h2>
       <button className="btn btn-blue-block" onClick={handleClick}>Play!</button>
 
       <button className="btn btn-center" onClick={openLeaderboard}>View Leaderboard</button>
