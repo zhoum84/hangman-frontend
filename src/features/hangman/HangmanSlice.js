@@ -9,6 +9,7 @@ const headers = {
   "Access-Control-Request-Headers": "Content-Type"
 };
 
+
 export const createUser = createAsyncThunk(
   'users/createUser',
   async (userData) => {
@@ -235,20 +236,6 @@ export const hangmanSlice = createSlice({
           state.error = action.error.message;
           state.isLoading = false;
         },
-        [fetchUser.pending]: (state) => {
-          state.status = 'loading';
-          state.isLoading = true;
-        },
-        [fetchUser.fulfilled]: (state, action) => {
-          state.status = 'succeeded';
-          state.user = action.payload;
-          state.isLoading = false;
-        },
-        [fetchUser.rejected]: (state, action) => {
-          state.status = 'failed';
-          state.error = action.error.message;
-          state.isLoading = false;
-        },
         [addScore.pending]: (state) => {
           state.status = 'loading';
           state.isLoading = true;
@@ -263,44 +250,44 @@ export const hangmanSlice = createSlice({
           state.error = action.error.message;
           state.isLoading = false;
         },
-        [fetchTopScores.pending]: (state) => {
+        [getTopScores.pending]: (state) => {
           state.status = 'loading';
           state.isLoading = true;
         },
-        [fetchTopScores.fulfilled]: (state, action) => {
+        [getTopScores.fulfilled]: (state, action) => {
           state.status = 'succeeded';
           state.topScores = action.payload;
           state.isLoading = false;
         },
-        [fetchTopScores.rejected]: (state, action) => {
+        [getTopScores.rejected]: (state, action) => {
           state.status = 'failed';
           state.error = action.error.message;
           state.isLoading = false;
         },
-        [fetchScoreByGameId.pending]: (state) => {
+        [getScoreByGameId.pending]: (state) => {
           state.status = 'loading';
           state.isLoading = true;
         },
-        [fetchScoreByGameId.fulfilled]: (state, action) => {
+        [getScoreByGameId.fulfilled]: (state, action) => {
           state.status = 'succeeded';
           state.scoresByGameId = action.payload;
           state.isLoading = false;
         },
-        [fetchScoreByGameId.rejected]: (state, action) => {
+        [getScoreByGameId.rejected]: (state, action) => {
           state.status = 'failed';
           state.error = action.error.message;
           state.isLoading = false;
         },
-        [fetchComputers.pending]: (state) => {
+        [getComputers.pending]: (state) => {
           state.status = 'loading';
           state.isLoading = true;
         },
-        [fetchComputers.fulfilled]: (state, action) => {
+        [getComputers.fulfilled]: (state, action) => {
           state.status = 'succeeded';
           state.computers = action.payload;
           state.isLoading = false;
         },
-        [fetchComputers.rejected]: (state, action) => {
+        [getComputers.rejected]: (state, action) => {
           state.status = 'failed';
           state.error = action.error.message;
           state.isLoading = false;
@@ -318,10 +305,6 @@ export const hangmanSlice = createSlice({
           state.status = 'failed';
           state.error = action.error.message;
           state.isLoading = false;
-        },
-        [fetchComputer.pending]: (state) => {
-          state.status = 'loading';
-          state.isLoading = true;
         },
     }})
 
