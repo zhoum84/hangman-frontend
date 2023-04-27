@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSignInAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 
 // The login page. Just like last time.
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
 
@@ -13,8 +14,18 @@ const Login = () => {
     setInput(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // may want to authenticate before setting username
+    const user = e.target[0].value;
+    props.username(user);
+
+    toast(`Logged in as ${user}`, {
+      type: "success",
+      autoClose: 1500,
+      position: "top-center"
+    });
 
     // dispatch(login(input))
     //   .unwrap()
@@ -35,7 +46,7 @@ const Login = () => {
       </section>
 
       <section className='form'>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className='form-group'>
             <input
               type='text'
