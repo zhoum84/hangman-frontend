@@ -10,6 +10,7 @@ import { randomComputer } from '../features/hangman/HangmanSlice'
 
 
 
+
 // currently hardcoded.
 // right now it is global, or else a random word would be selected on each input
 const words = ['word', 'javascript', 'lighthall', 'ihatereactredux', 'hello'];
@@ -41,7 +42,7 @@ const Game = () => {
   // maybe just reload the page
   const playAgain = () => {
     setPlayable(true);
-
+    getWord()
     // Reset the game state
     setCorrectInputs([]);
     setWrongLetters([]);
