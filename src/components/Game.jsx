@@ -8,22 +8,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { randomComputer } from '../features/hangman/HangmanSlice'
 
-
-
-
-// currently hardcoded.
-// right now it is global, or else a random word would be selected on each input
-const words = ['word', 'javascript', 'lighthall', 'ihatereactredux', 'hello'];
-// let selectedWord = words[Math.floor(Math.random() * words.length)];
-
-
 const Game = () => {
   const [selectedWord, setSelectedWord] = useState('')
   const [playable, setPlayable] = useState(true);
   const [correctInputs, setCorrectInputs] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const dispatch = useDispatch()
-  // const [guessedLetters, setGuessedLetters] = useState([JSON.parse(localStorage.getItem('guessedLetters'))]);
   const [guessedLetters, setGuessedLetters] = useState(new Set([]));
 
   const getWord = useCallback(() => {
@@ -39,6 +29,7 @@ const Game = () => {
   useEffect(() => {
     console.log('word:', selectedWord);
   }, [selectedWord]);
+
   // maybe just reload the page
   const playAgain = () => {
     setPlayable(true);
@@ -63,8 +54,7 @@ const Game = () => {
     const handleKeydown = (event) => {
       const { key, keyCode } = event;
       if (playable && keyCode >= 65 && keyCode <= 90) {
-        const letter = key.toLowerCase();
-        handleGuess(letter);
+        handleGuess(key.toLowerCase());
       }
     }
     window.addEventListener('keydown', handleKeydown);
@@ -73,8 +63,7 @@ const Game = () => {
   }, [correctInputs, wrongLetters, playable]);
 
   const handleGuess = letter => {
-    const newSet = new Set([...guessedLetters, letter]);
-    setGuessedLetters(newSet);
+    setGuessedLetters(new Set([...guessedLetters, letter]));
     if (selectedWord.includes(letter)) {
       if (!correctInputs.includes(letter)) {
         setCorrectInputs(currentInputs => [...currentInputs, letter]);
