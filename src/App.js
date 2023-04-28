@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Login user={user} sendRequest={sendRequest} />} />
             <Route path='/home' element={<Home user={user}/>} />
-            <Route path='/playgame' element={<PlayGame />} />
+            <Route path='/playgame' element={<PlayGame user ={user}/>} />
           </Routes>
           <ToastContainer />
         </div>

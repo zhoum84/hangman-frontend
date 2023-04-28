@@ -34,7 +34,7 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
+        <Link classname ='link'to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
       </div>
       <div>
         {user}
@@ -47,7 +47,7 @@ function Header() {
             </Link>
           </li>
           : <li>
-              <button className='btn' onClick={onPress}> 
+              <button className='btn hovPurp' onClick={onPress}> 
                 <FaSignOutAlt /> Logout
               </button>
             </li>
