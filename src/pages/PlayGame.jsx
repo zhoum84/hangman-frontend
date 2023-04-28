@@ -4,10 +4,10 @@ import Game from "../components/Game"
 const PlayGame = () => {
   return (
     <div>
-      <button className='btn btn-blue'>
+      {/* <button className='btn btn-blue'>
         Challenge a friend!
         <FaShare />
-      </button>
+      </button> */}
       <button className="btn btn-info btn-lg" data-toggle="modal" data-target="#rulesModal">Game Rules</button>
       <div className="modal fade" id="rulesModal" role="dialog">
         <div className="modal-dialog">
