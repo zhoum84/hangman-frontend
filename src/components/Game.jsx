@@ -37,6 +37,7 @@ const Game = () => {
     // Reset the game state
     setCorrectInputs([]);
     setWrongLetters([]);
+    setGuessedLetters(new Set([]));
 
     // select new word
 
@@ -108,7 +109,7 @@ const Game = () => {
           <button className={guessedLetters.has("w") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("w")}>W</button>
           <button className={guessedLetters.has("e") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("e")}>E</button>
           <button className={guessedLetters.has("r") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("r")}>R</button>
-          <button className={guessedLetters.has("t") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("t")}>T</button>
+          <button className={ guessedLetters.has("t") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("t")}>T</button>
           <button className={guessedLetters.has("y") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("y")}>Y</button>
           <button className={guessedLetters.has("u") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("u")}>U</button>
           <button className={guessedLetters.has("i") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("i")}>I</button>
