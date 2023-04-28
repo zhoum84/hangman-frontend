@@ -8,29 +8,73 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { randomComputer } from '../features/hangman/HangmanSlice'
 
-const Game = () => {
+const Game = (user) => {
   const [selectedWord, setSelectedWord] = useState('')
   const [playable, setPlayable] = useState(true);
+  const [computer,setComputer] =useState([]);
   const [correctInputs, setCorrectInputs] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const dispatch = useDispatch()
   const [guessedLetters, setGuessedLetters] = useState(new Set([]));
+  const [totalScore,setTotalScore] =useState(0)
+  const [currentWordValue, setCurrentWordValue] = useState(0)
+  const [currentScore, setCurrentScore] = useState(0)
+  let state = "";
+  let score = 0;
 
   const getWord = useCallback(() => {
     dispatch(randomComputer())
       .unwrap()
-      .then(data => setSelectedWord(data.word))
-  }, [dispatch])
+      .then(data => {
+        setSelectedWord(data.word);
+        setCurrentWordValue(data.score);
+      })
+      
+  }, [dispatch]);
 
   useEffect(() => {
     getWord();
   }, [getWord]);
 
   useEffect(() => {
-    console.log('word:', selectedWord);
+    console.log('word:', selectedWord );
   }, [selectedWord]);
 
+
+  const letterCount = {};
+selectedWord.split("").forEach((letter) => {
+  if (letterCount.hasOwnProperty(letter)) {
+    letterCount[letter]++;
+  } else {
+    letterCount[letter] = 1;
+  }
+});
+
+correctInputs.forEach((letter) => {
+  if (letterCount.hasOwnProperty(letter) && letterCount[letter] > 0) {
+    letterCount[letter]--;
+    score++;
+    score += letterCount[letter];
+    
+  } else {
+    state = "";
+  }
+});
+
   // maybe just reload the page
+  const playNext = () => {
+    setPlayable(true);
+    getWord()
+    // Reset the game state
+    setCorrectInputs([]);
+    setWrongLetters([]);
+    setGuessedLetters(new Set([]));
+    setTotalScore(currentWordValue + totalScore)
+
+    // select new word
+
+  }
+
   const playAgain = () => {
     setPlayable(true);
     getWord()
@@ -38,6 +82,7 @@ const Game = () => {
     setCorrectInputs([]);
     setWrongLetters([]);
     setGuessedLetters(new Set([]));
+    setTotalScore(0)
 
     // select new word
 
@@ -88,6 +133,8 @@ const Game = () => {
     <>
       <div className=''>
       <IncorrectInputs incorrectInputs={wrongLetters} />
+      <h2>Total Score: {totalScore * 100}</h2>
+      <h2>current score: {score * 100}</h2>
 
         {/* <div className='game'>
           <h1>The Player</h1>
@@ -101,7 +148,7 @@ const Game = () => {
           {/* <h1>The Computer</h1> */}
           <Gallows incorrectInputs={wrongLetters} />
           <Word selectedWord={selectedWord} correctInputs={correctInputs} />
-          <EndGame correctInputs={correctInputs} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
+          <EndGame playNext ={playNext} correctInputs={correctInputs} score = {score}currentWordValue={currentWordValue} totalScore={totalScore} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
         </div>
       </div>
       <div style={{"margin-top": "50px"}}>

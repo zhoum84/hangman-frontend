@@ -174,6 +174,7 @@ export const randomComputer = createAsyncThunk(
 export const hangmanSlice = createSlice({
     name: 'hangman',
     initialState: {
+      scores: [],
       players: [],
       status: 'idle',
       error: null,

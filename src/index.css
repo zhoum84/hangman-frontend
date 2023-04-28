@@ -373,10 +373,18 @@ ul {
   padding: 10px;
   margin: 10px;
   cursor: pointer;
-  background-color: #c7e6bc;
+  /* background-color: #c7e6bc; */
+  background-color: rgb(161, 4, 161);
   border: none;
   border-radius: 5px;
   width: 40px;
+  color:white;
+}
+
+.purple{
+  background-color: rgb(161, 4, 161);
+  color:white;
+
 }
 
 .selectedLetter {
@@ -394,3 +402,18 @@ a {
   text-decoration: none;
   color: #000;
 }
+a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.hovPurp:hover{
+  background-color: rgb(161, 4, 161);
+  color:white;
+}
+.link{
+  text-decoration: none;
+  color: #000;
+  
+}
+
