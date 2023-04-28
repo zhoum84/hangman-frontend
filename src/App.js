@@ -6,6 +6,7 @@ import PlayGame from "./pages/PlayGame";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
+import PlayGameCode from "./pages/PlayGameCode";
 
 function App() {
   const [user, setUser] = useState('');
@@ -20,7 +21,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Login user={user} sendRequest={sendRequest} />} />
             <Route path='/home' element={<Home user={user}/>} />
-            <Route path='/playgame' element={<PlayGame user ={user}/>} />
+            <Route path='/playgame' element={<PlayGame />} />
+            <Route path = '/playgame/:code' element={<PlayGameCode />} />
           </Routes>
           <ToastContainer />
         </div>
