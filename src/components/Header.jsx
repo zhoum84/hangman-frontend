@@ -34,7 +34,7 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link classname ='link'to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
+        <Link className ='link'to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
       </div>
       <div>
         {user}

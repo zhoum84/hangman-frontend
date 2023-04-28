@@ -19,7 +19,6 @@ const Home = () => {
       .unwrap()
       .then(data => {
         setTopScores(data)
-        .then(console.log(data))
       })
       
   }, [dispatch]);
@@ -34,10 +33,7 @@ const Home = () => {
   const nameRegex = /^[A-Za-z\s]+$/;
   const [code, setCode] = useState()
   const codeValue = useSelector(state =>   state.hangman.players.length? state.hangman.players[0].data.id : null)
-  const frontUrl = process.env.APP_URL;
-
-  console.log("URL ius: ",frontUrl)
-
+  const frontUrl = "https://hangman-team58.onrender.com/";
 
 
   // this should generate a random game
@@ -75,13 +71,6 @@ const Home = () => {
     }
   },[setCode, isChallengingFriend, codeValue])
 
-
-
-  // open a modal?
-  const openLeaderboard = () => {
-
-  }
-
   return (
     <>
       <section className="heading">
@@ -91,8 +80,8 @@ const Home = () => {
 
       {/* <h2>Your total score: {score}</h2> */}
       <button className="btn btn-blue-block" onClick={handleClickPlay}>Play!</button>
-      <button className="btn btn-blue-block" data-toggle="modal" data-target="#rulesModal">Challenge a Friend</button>
-      <div className="modal fade" id="rulesModal" role="dialog">
+      <button className="btn btn-blue-block" data-toggle="modal" data-target="#challengeModal">Challenge a Friend</button>
+      <div className="modal fade" id="challengeModal" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -123,9 +112,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+    </div>
+    <div>
 
-      <button className="btn btn-center" data-toggle="modal" data-target="#rulesModal">View Leaderboard!</button>
-      <div className="modal fade" id="rulesModal" role="dialog">
+    <button className="btn btn-center" data-toggle="modal" data-target="#LeaderModal">View Leaderboard!</button>
+      <div className="modal fade" id="LeaderModal" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
