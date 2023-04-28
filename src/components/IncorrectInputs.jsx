@@ -1,19 +1,12 @@
 const IncorrectInputs = ({ incorrectInputs }) => {
+  const len = incorrectInputs.length;
   return (
-    <>
-      <div className="incorrect-inputs-container">
-        <div>
-          {incorrectInputs.length > 0 && <p>{ incorrectInputs.length} wrong guesses used: </p>}
-          {incorrectInputs
-            .map((letter, i) => <span key={i}>{letter}</span>)
-            .reduce(
-              (prev, curr) => (prev === null ? [curr] : [prev, ", ", curr]),
-              null
-          )}
-          <p>{6 - incorrectInputs.length} wrong guesses left.</p>
-        </div>
+    <div className="incorrect-inputs-container">
+      <div>
+        {len > 0 && <p>{len} wrong guesses: {incorrectInputs.join(', ')}</p>}
+        <p>{6 - len} wrong guesses left.</p>
       </div>
-    </>
+    </div>
   );
 };
 
