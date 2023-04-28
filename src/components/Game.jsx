@@ -87,23 +87,24 @@ const Game = () => {
   return (
     <>
       <div className=''>
-        <div className='game'>
+      <IncorrectInputs incorrectInputs={wrongLetters} />
+
+        {/* <div className='game'>
           <h1>The Player</h1>
           <Gallows incorrectInputs={wrongLetters} />
           <IncorrectInputs incorrectInputs={wrongLetters} />
           <Word selectedWord={selectedWord} correctInputs={correctInputs} />
           <EndGame correctInputs={correctInputs} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
-        </div>
-        <div className="vertical-line"></div>
+        </div> */}
+        {/* <div className="vertical-line"></div> */}
         <div className='game'>
-          <h1>The Computer</h1>
+          {/* <h1>The Computer</h1> */}
           <Gallows incorrectInputs={wrongLetters} />
-          <IncorrectInputs incorrectInputs={wrongLetters} />
           <Word selectedWord={selectedWord} correctInputs={correctInputs} />
           <EndGame correctInputs={correctInputs} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
         </div>
       </div>
-      <div>
+      <div style={{"margin-top": "50px"}}>
         <div className='row'>
           <button className={guessedLetters.has("q") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("q")}>Q</button>
           <button className={guessedLetters.has("w") ? "selectedLetter" : "keyboard"} onClick={() => handleButtonClick("w")}>W</button>
