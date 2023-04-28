@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { randomComputer } from '../features/hangman/HangmanSlice'
 
-const Game = (user) => {
+const Game = (word) => {
   const [selectedWord, setSelectedWord] = useState('')
   const [playable, setPlayable] = useState(true);
   const [computer,setComputer] =useState([]);
@@ -32,9 +32,12 @@ const Game = (user) => {
       
   }, [dispatch]);
 
-  useEffect(() => {
-    getWord();
-  }, [getWord]);
+useEffect(()=>{
+    if(word.word){
+    setSelectedWord(word.word)
+    }
+  },[word,setSelectedWord])
+
 
   useEffect(() => {
     console.log('word:', selectedWord );
@@ -106,6 +109,7 @@ correctInputs.forEach((letter) => {
     window.addEventListener('keydown', handleKeydown);
 
     return () => window.removeEventListener('keydown', handleKeydown);
+    // eslint-disable-next-line 
   }, [correctInputs, wrongLetters, playable]);
 
   const handleGuess = letter => {
@@ -133,19 +137,9 @@ correctInputs.forEach((letter) => {
     <>
       <div className=''>
       <IncorrectInputs incorrectInputs={wrongLetters} />
-      <h2>Total Score: {totalScore * 100}</h2>
-      <h2>current score: {score * 100}</h2>
-
-        {/* <div className='game'>
-          <h1>The Player</h1>
-          <Gallows incorrectInputs={wrongLetters} />
-          <IncorrectInputs incorrectInputs={wrongLetters} />
-          <Word selectedWord={selectedWord} correctInputs={correctInputs} />
-          <EndGame correctInputs={correctInputs} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
-        </div> */}
-        {/* <div className="vertical-line"></div> */}
         <div className='game'>
-          {/* <h1>The Computer</h1> */}
+        <h2>Total Score: {totalScore * 100}</h2>
+      <h2>current score: {score * 100}</h2>
           <Gallows incorrectInputs={wrongLetters} />
           <Word selectedWord={selectedWord} correctInputs={correctInputs} />
           <EndGame playNext ={playNext} correctInputs={correctInputs} score = {score}currentWordValue={currentWordValue} totalScore={totalScore} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />

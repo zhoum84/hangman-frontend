@@ -417,3 +417,12 @@ a:hover{
   
 }
 
+
+.btn-default{
+  display: inline-block;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
