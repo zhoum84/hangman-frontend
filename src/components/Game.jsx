@@ -8,17 +8,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { randomComputer } from '../features/hangman/HangmanSlice'
 
-const Game = (word) => {
+const Game = (props) => {
   const [selectedWord, setSelectedWord] = useState('')
   const [playable, setPlayable] = useState(true);
-  const [computer,setComputer] =useState([]);
   const [correctInputs, setCorrectInputs] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const dispatch = useDispatch()
   const [guessedLetters, setGuessedLetters] = useState(new Set([]));
   const [totalScore,setTotalScore] =useState(0)
   const [currentWordValue, setCurrentWordValue] = useState(0)
-  const [currentScore, setCurrentScore] = useState(0)
+  // eslint-disable-next-line 
   let state = "";
   let score = 0;
 
@@ -33,15 +32,10 @@ const Game = (word) => {
   }, [dispatch]);
 
 useEffect(()=>{
-    if(word.word){
-    setSelectedWord(word.word)
+    if(props.word){
+    setSelectedWord(props.word)
     }
-  },[word,setSelectedWord])
-
-
-  useEffect(() => {
-    console.log('word:', selectedWord );
-  }, [selectedWord]);
+  },[props,setSelectedWord])
 
 
   const letterCount = {};
@@ -142,7 +136,7 @@ correctInputs.forEach((letter) => {
       <h2>current score: {score * 100}</h2>
           <Gallows incorrectInputs={wrongLetters} />
           <Word selectedWord={selectedWord} correctInputs={correctInputs} />
-          <EndGame playNext ={playNext} correctInputs={correctInputs} score = {score}currentWordValue={currentWordValue} totalScore={totalScore} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
+          <EndGame playNext ={playNext} correctInputs={correctInputs} score = {score}currentWordValue={currentWordValue} totalScore={totalScore} incorrectInputs={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} code = {props.code? props.code : null }/>
         </div>
       </div>
       <div style={{"margin-top": "50px"}}>
