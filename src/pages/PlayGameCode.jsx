@@ -54,7 +54,8 @@ const PlayGameCode = () => {
     dispatch(getScoreByGameId(code))
     .unwrap()
     .then(data => setFreindScore(data))
-  }, [getWord, dispatch, code, isUserLoggedIn, userLocalStorage]);
+    // eslint-disable-next-line
+  }, [getWord, dispatch]);
 
 
 
@@ -101,7 +102,7 @@ const PlayGameCode = () => {
                 <h4  >Leaderboard</h4>
               </div>
               <div className="modal-body">
-              {friendScore.length? 
+              {friendScore? 
               (friendScore.map(score => (
                   <li key={score.user}>{score.user_name} - {score.score}</li>
                     ))) : 
