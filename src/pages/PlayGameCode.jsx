@@ -54,7 +54,7 @@ const PlayGameCode = () => {
     dispatch(getScoreByGameId(code))
     .unwrap()
     .then(data => setFreindScore(data))
-    
+    // eslint-disable-next-line
   }, [getWord, dispatch]);
 
 
