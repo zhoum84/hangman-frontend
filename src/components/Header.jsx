@@ -19,6 +19,7 @@ function Header() {
     if(username !== null){
     setUser(username.length? username[0].name : username.name);
     setIsUserLoggedIn(true)
+    // eslint-disable-next-line
   }},[setUser])
   
 
