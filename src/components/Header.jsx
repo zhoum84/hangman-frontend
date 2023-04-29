@@ -8,18 +8,16 @@ import { toast } from "react-toastify";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let username;
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
 
   const [user, setUser] = useState();
 
   useEffect(()=>{
-    // eslint-disable-next-line 
-    username = JSON.parse(localStorage.getItem("user"));
-    if(username !== null){
+    const username = JSON.parse(localStorage.getItem("user"));
+    if(username){
     setUser(username.length? username[0].name : username.name);
     setIsUserLoggedIn(true)
-  }},[setUser])
+  }})
   
 
   const onPress = () =>{
