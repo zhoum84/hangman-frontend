@@ -61,7 +61,7 @@ export const getScoreByGameId = createAsyncThunk(
   async (gameId) => {
     try {
       const response = await axios.get(url + 'top-score-game/', {
-        params: { game_id: gameId },
+        params: { game_code: gameId },
       });
       return response.data;
     } catch (error) {

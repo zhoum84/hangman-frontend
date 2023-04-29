@@ -12,8 +12,8 @@ const EndGame = ({
   totalScore,
   currentWordValue,
   score,
-  playNext
-
+  playNext,
+  code,
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -25,40 +25,33 @@ const EndGame = ({
   let finalMessageRevealWord = "";
   let playable = true;
   const user = JSON.parse(localStorage.getItem("user"))
-  const userId = user.length? user[0].id :  user["id"];
-  const username = user.length? user[0].name :  user["name"];
+  const [userId, setUserId] = useState();
+  const [username, setUsername] = useState();
+
+  useEffect(()=>{
+    if(user){
+      setUserId(user.length? user[0].id :  user["id"]);
+      setUsername(user.length? user[0].name :  user["name"]);
+    }
+  },[userId, username, user])
  
-
-
-  // On every input, check if the user has won or lost
-  // State corresponds with win/lose/continue
   
   let state = true;
 
-  // if the correct inputs do not contain all the word letters,
-  // set state to nothing
   selectedWord.split("").forEach((letter) => {
     if (!correctInputs.includes(letter)) {
       state = '';
     }
   });
 
-  // end the game if the player has guessed incorrectly 6 times
   if (incorrectInputs.length === 6){ 
     state = false 
   }
 
-  // useEffect(() => {
-  //   if (incorrectInputs.length === 6) {
-  //     const finalScore = totalScore + score;
-  //     const finalScoreComplete = finalScore * 100
-  //     dispatch(addScore({ score: finalScoreComplete, user: user }));
-  //   }
-  // }, [incorrectInputs, totalScore, score, user, dispatch]);
   const handleAddScore = () => {
     const finalScore = totalScore + score;
     const finalScoreComplete = finalScore * 100
-    const scoreData = { user_name: username, score: finalScoreComplete, user: userId }; // replace with actual data
+    const scoreData = { user_name: username, score: finalScoreComplete, user: userId , game_code: code}; 
     dispatch(addScore(scoreData));
   };
 

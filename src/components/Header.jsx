@@ -8,16 +8,18 @@ import { toast } from "react-toastify";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const username = JSON.parse(localStorage.getItem("user"));
+  let username;
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
 
   const [user, setUser] = useState();
 
   useEffect(()=>{
+    // eslint-disable-next-line 
+    username = JSON.parse(localStorage.getItem("user"));
     if(username !== null){
     setUser(username.length? username[0].name : username.name);
     setIsUserLoggedIn(true)
-  }},[setUser,username])
+  }},[setUser])
   
 
   const onPress = () =>{
@@ -34,7 +36,7 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link className ='link'to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
+        <Link classame ='link'to={isUserLoggedIn? '/home' : '/'}>Hangman! </Link>
       </div>
       <div>
         {user}

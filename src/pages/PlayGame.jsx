@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import Game from "../components/Game"
 import { randomComputer } from "../features/hangman/HangmanSlice";
 
